@@ -1,0 +1,61 @@
+---
+runtime: shell
+code: |
+  /app/vault-actions "$hostUrl" "$apiToken" "$action" "$secretPath" "$key"
+  source /app/output.txt
+    export $(cut -d= -f1 /app/output.txt)
+inputProperties:
+  - name: hostUrl
+    type: text
+    title: HostUrl
+    placeHolder: Vault server Url
+    defaultValue: ""
+    bindable: true
+    labelInfo: true
+    labelMessage: Vault server Url
+  - name: apiToken
+    type: text
+    title: ApiToken
+    placeHolder: API token to query Vault
+    defaultValue: ""
+    bindable: true
+    labelInfo: true
+    labelMessage: API token to query Vault
+  - name: action
+    type: select
+    title: Action name
+    placeHolder: Action name
+    defaultValue: 
+    bindable: true
+    labelInfo: true
+    labelMessage:
+    options:
+       - optionKey : readContent
+         optionValue : Read Content
+  - name: secretPath
+    type: textarea
+    title: SecretPath 
+    placeHolder: Path to read content from
+    defaultValue: ""
+    bindable: true
+    labelInfo: true
+    labelMessage: Path to read content from
+  - name: key
+    type: text
+    title: Key
+    placeHolder: Key for data retrieval
+    defaultValue: ""
+    bindable: true
+    labelInfo: true
+    labelMessage: Key for data retrieval
+         
+outputProperties:
+  - name: output
+    type: label
+    title: Output
+  - name: outputHTML
+    type: label
+    title: Output HTML
+  - name: outputPrettyText
+    type: label
+    title: Output Pretty Text
